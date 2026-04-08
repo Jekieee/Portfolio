@@ -1,0 +1,135 @@
+[
+  {
+    "id": "bl-sandia-dc",
+    "name": "Sandia Data Challenge",
+    "location": "Champaign, IL",
+    "time": "2024-10 – 2024-11",
+    "organization": "Department of Statistics & Sandia National Laboratories",
+    "highlights": [
+      "A bio-data competition hosted by the Department of Statistics and Sandia National Laboratories, focused on brainwave analysis and predictive modeling.",
+      "Analyzed brainwave data from 40 participants to study the N400 phenomenon and extract features for model training and testing.",
+      "Proposed and implemented a Random Forest model as the team’s initial prediction framework.",
+      "Coordinated task division and guided team efforts during model development, contributing to efficient collaboration."
+    ],
+    "tags": [
+      "Competition"
+    ]
+  },
+  {
+    "id": "bl-oval",
+    "name": "OVAL International Business Contest",
+    "location": "Incheon, South Korea",
+    "time": "2024-07 – 2024-08",
+    "organization": "OVAL (China–Japan–Korea)",
+    "highlights": [
+      "International business case competition between students from China, Japan, and Korea.",
+      "Collaborated in a 3-person team to design a business plan for a personalized diabetes nutrition service.",
+      "Conducted market research using TAM / SAM / SOM.",
+      "Built financial forecasts in Excel (cash flow, profitability, user growth, etc.)."
+    ],
+    "tags": [
+      "Competition"
+    ]
+  },
+  {
+    "id": "bl-uiuc-datathon",
+    "name": "UIUC Datathon — Credit Risk & Spending Forecasting Competition",
+    "location": "Champaign, IL",
+    "time": "2025-03 – 2025-03",
+    "organization": "Synchrony Financial",
+    "highlights": [
+      "A financial data science competition focused on analyzing real-world banking transaction and credit datasets to forecast customer spending, predict credit line increases, and assess associated risks.",
+      "Designed and implemented feature engineering pipelines leveraging account history, transaction data, and fraud indicators to enhance model robustness.",
+      "Led the modeling effort by constructing risk forecasting frameworks, including XGBoost for credit line increase classification and SARIMA for spending projections.",
+      "Coordinated team workflow by drafting the project README, hosting discussions, and ensuring collaborative integration of models and visualizations into a coherent solution."
+    ],
+    "tags": [
+      "Competition"
+    ]
+  },
+  {
+    "id": "bl-drw-crypto",
+    "name": "DRW Crypto Forecasting Competition",
+    "location": "",
+    "time": "2025-06 – 2025-07",
+    "organization": "DRW (Kaggle)",
+    "highlights": [
+      "A quantitative trading competition on Kaggle hosted by DRW, focused on time-series forecasting of crypto markets.",
+      "Context: minute-level historical crypto data; goal was to predict future market price movements.",
+      "Utilized train data (525,886 × 786) and test data (538,150 × 786) from the competition.",
+      "Led a 5-member team on task allocation, progress tracking, and strategy meetings for timely deliverables.",
+      "Designed and implemented predictive models using LSTM and XGBoost.",
+      "Spearheaded data pipeline work: API-based data acquisition, visualization, and mutual information–based feature selection."
+    ],
+    "tags": [
+      "Competition"
+    ]
+  },
+  {
+    "id": "bl-cmbs-practicum",
+    "name": "Kamin Atsavasirilert (Capital One) - CMBS Prepayment Modeling Practicum",
+    "location": "Champaign, IL",
+    "time": "2026-01 – 2026-05",
+    "organization": "MSFE Program, Practicum Project",
+    "highlights": [
+      "Developing a traditional statistical model and a machine learning model to forecast CMBS prepayment behavior.",
+      "Engineered loan-level and macroeconomic features, performed model calibration, and evaluated predictive performance using out-of-sample validation; model accuracy ~80%.",
+      "Compared statistical and ML approaches to assess robustness, interpretability, and practical applicability in structured finance modeling."
+    ],
+    "tags": [
+      "Project",
+      "Finance"
+    ]
+  },
+  {
+    "id": "bl-american-option-nn",
+    "name": "Neural Network Approximation of American Option Pricing",
+    "location": "Champaign, IL",
+    "time": "2025-10 – 2025-12",
+    "organization": "MSFE Program, Machine Learning in Finance Lab — Final Project",
+    "highlights": [
+      "Developed neural-network surrogate models to approximate American put option prices under multiple volatility structures.",
+      "Generated training data using finite-difference PDE solvers under Black–Scholes and Heston models.",
+      "Constructed and analyzed volatility surfaces, including constant volatility, synthetic smile, and market-implied volatility.",
+      "Calibrated Heston stochastic volatility and SVI implied volatility surfaces; derived local volatility via the Dupire framework.",
+      "Achieved MAE / RMSE of 0.0837 / 0.1120 for Black–Scholes and 0.1453 / 0.1971 for Heston surrogate pricing."
+    ],
+    "tags": [
+      "Finance"
+    ]
+  },
+  {
+    "id": "bl-financial-news-pipeline",
+    "name": "LLM-based Financial News Intelligence Pipeline",
+    "location": "Champaign, IL",
+    "time": "2026-01 – 2026-05",
+    "organization": "Financial Engineering Club",
+    "highlights": [
+      "Developed a multi-agent financial news analysis pipeline using LangGraph and LLMs for real-time market intelligence.",
+      "Integrated FinBERT pre-screening and semantic deduplication to filter and prioritize relevant financial signals.",
+      "Designed tiered LLM analysis to generate structured desk-brief reports and alert high-impact events.",
+      "Deployed system with FastAPI, Streamlit dashboard, and multi-channel alerting for practical monitoring use."
+    ],
+    "tags": [
+      "Project",
+      "Finance"
+    ]
+  },
+  {
+    "id": "bl-autonomous-ml-research",
+    "name": "Autonomous ML Research & Optimization System",
+    "location": "Champaign, IL",
+    "time": "2026-01 – 2026-05",
+    "organization": "MSFE Program, High Frequency Trading Course Project",
+    "highlights": [
+      "Built an autonomous research loop that iteratively improves financial ML models using LLM-driven hypothesis generation.",
+      "Implemented two-stage evaluation with walk-forward validation and multi-agent judging for robustness and consistency.",
+      "Automated experiment tracking, model versioning, and rollback via a Git-based pipeline.",
+      "Designed the system for continuous 24/7 model optimization without human intervention."
+    ],
+    "tags": [
+      "Project",
+      "Finance"
+    ]
+  }
+]

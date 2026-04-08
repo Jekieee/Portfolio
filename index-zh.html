@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiaqi Zeng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+[data-theme="dark"]{
+  --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--bg4:#222;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#e8e6e0;--muted:#7a7870;--muted2:#4e4d48;
+  --accent:#c8b89a;--accent2:#8fa89e;--gold:#d4a853;
+  --nav-bg:rgba(10,10,10,0.9);
+  --tag-bg:rgba(200,184,154,0.08);--tag-bd:rgba(200,184,154,0.18);
+  --card:#0a0a0a;--card-h:#161616;
+  --grid:rgba(200,184,154,0.03);
+}
+[data-theme="light"]{
+  --bg:#f7f5f0;--bg2:#fff;--bg3:#eeebe4;--bg4:#e5e2da;
+  --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);
+  --text:#1a1916;--muted:#6b6860;--muted2:#999590;
+  --accent:#8a6f4a;--accent2:#4a7a70;--gold:#a07020;
+  --nav-bg:rgba(247,245,240,0.92);
+  --tag-bg:rgba(138,111,74,0.07);--tag-bd:rgba(138,111,74,0.18);
+  --card:#f7f5f0;--card-h:#f0ede6;
+  --grid:rgba(138,111,74,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Instrument Sans',sans-serif;font-size:16px;line-height:1.78;
+  overflow-x:hidden;transition:background .35s,color .35s;
+}
+::selection{background:rgba(200,184,154,.2);}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:52px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1.2rem,3.8vw,2.8rem);
+  background:var(--nav-bg);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);transition:background .35s;
+}
+.logo{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:.08em;text-decoration:none;transition:color .2s;}
+.logo:hover{color:var(--text);}
+.nav-links{
+  display:flex;gap:2rem;list-style:none;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+.nav-links a{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:.07em;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-r{display:flex;align-items:center;gap:8px;}
+.pill{display:flex;align-items:center;background:var(--bg3);border:1px solid var(--border2);border-radius:100px;padding:3px;gap:2px;}
+.tbtn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;padding:4px 12px;border-radius:100px;border:none;cursor:pointer;background:transparent;color:var(--muted);transition:background .2s,color .2s;}
+.tbtn.on{background:var(--accent);color:var(--bg);}
+.ibtn{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg3);border:1px solid var(--border2);cursor:pointer;font-size:14px;color:var(--muted);transition:background .2s,color .2s;}
+.ibtn:hover{background:var(--bg4);color:var(--text);}
+
+/* HERO */
+#hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 clamp(1.2rem,3.8vw,2.8rem) 5.5rem;
+  position:relative;overflow:hidden;
+  width:min(1120px,100%);margin:0 auto;
+}
+.hgrid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:64px 64px;}
+.hlabel{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.13em;text-transform:uppercase;margin-bottom:1.6rem;opacity:0;animation:fu .8s .2s forwards;}
+.hname{font-family:'DM Serif Display',serif;font-size:clamp(4rem,10vw,9rem);line-height:.92;letter-spacing:-.02em;color:var(--text);margin-bottom:1.6rem;opacity:0;animation:fu .8s .35s forwards;}
+.hname em{font-style:italic;color:var(--accent);}
+.hdesc{max-width:620px;font-size:17px;color:var(--muted);line-height:1.82;margin-bottom:2.5rem;opacity:0;animation:fu .8s .5s forwards;}
+.hdesc strong{color:var(--text);font-weight:500;}
+.hcta{display:flex;gap:1rem;align-items:center;opacity:0;animation:fu .8s .65s forwards;}
+.bp{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;padding:10px 22px;background:var(--accent);color:var(--bg);border:none;border-radius:2px;text-decoration:none;transition:opacity .2s,transform .15s;cursor:pointer;}
+.bp:hover{opacity:.88;transform:translateY(-1px);}
+.bg{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;padding:10px 22px;background:transparent;color:var(--muted);border:1px solid var(--border2);border-radius:2px;text-decoration:none;transition:color .2s,border-color .2s;}
+.bg:hover{color:var(--text);border-color:var(--muted);}
+.hscroll{position:absolute;right:2.8rem;bottom:3rem;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fu .8s 1s forwards;}
+.hscroll span{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:.1em;writing-mode:vertical-rl;}
+.sline{width:1px;height:44px;background:linear-gradient(to bottom,var(--muted2),transparent);animation:sp 2.2s ease-in-out infinite;}
+
+/* SECTIONS */
+section{
+  padding:5.5rem clamp(1.2rem,3.8vw,2.8rem);
+  border-top:1px solid var(--border);transition:border-color .35s;
+  width:min(1120px,100%);margin:0 auto;
+}
+.slabel{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:3rem;display:flex;align-items:center;gap:1rem;}
+.slabel::after{content:'';flex:1;max-width:80px;height:1px;background:var(--border2);}
+
+/* ABOUT */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.ah{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;margin-bottom:1.5rem;}
+.ah em{font-style:italic;color:var(--accent);}
+.at{color:var(--muted);line-height:1.9;font-size:16.5px;margin-bottom:1rem;}
+.at strong{color:var(--text);font-weight:500;}
+.ar{display:flex;flex-direction:column;gap:1.4rem;}
+.ib{border-left:2px solid var(--border2);padding-left:1.2rem;}
+.il{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem;}
+.iv{font-size:14px;color:var(--text);line-height:1.55;}
+.sw{display:flex;flex-wrap:wrap;gap:6px;margin-top:.4rem;}
+.sk{font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;background:var(--tag-bg);border:1px solid var(--tag-bd);color:var(--accent);border-radius:2px;letter-spacing:.04em;}
+
+/* EDUCATION */
+.ei{display:grid;grid-template-columns:130px 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border);}
+.ei:last-child{border-bottom:none;}
+.ey{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);letter-spacing:.06em;padding-top:4px;}
+.ed{font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--text);margin-bottom:.25rem;}
+.es{font-size:13.5px;color:var(--muted);margin-bottom:.4rem;}
+.eh{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.04em;}
+
+/* PROJECTS */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.pc{background:var(--card);padding:2rem;position:relative;overflow:hidden;transition:background .2s;cursor:default;}
+.pc:hover{background:var(--card-h);}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:transparent;transition:background .3s;}
+.pc:hover::before{background:var(--accent);}
+.ptags{display:flex;gap:6px;margin-bottom:1rem;flex-wrap:wrap;}
+.pt{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;padding:2px 8px;border-radius:2px;text-transform:uppercase;}
+.ptf{background:rgba(143,168,158,.1);color:var(--accent2);border:1px solid rgba(143,168,158,.2);}
+.ptm{background:var(--tag-bg);color:var(--accent);border:1px solid var(--tag-bd);}
+.ptq{background:rgba(212,168,83,.08);color:var(--gold);border:1px solid rgba(212,168,83,.2);}
+.ptc{background:var(--bg3);color:var(--muted);border:1px solid var(--border2);}
+.ptitle{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--text);margin-bottom:.3rem;line-height:1.25;}
+.porg{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);margin-bottom:.85rem;letter-spacing:.04em;}
+.pbl{list-style:none;display:flex;flex-direction:column;gap:.35rem;}
+.pbl li{font-size:14.5px;color:var(--muted);padding-left:1rem;position:relative;line-height:1.72;}
+.pbl li::before{content:'—';position:absolute;left:0;color:var(--muted2);font-family:'DM Mono',monospace;}
+.pbl li strong{color:var(--text);font-weight:500;}
+.pdate{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);margin-top:1.1rem;letter-spacing:.04em;}
+
+/* EXPERIENCE */
+.xi{display:grid;grid-template-columns:130px 1fr;gap:2rem;padding:2.5rem 0;border-bottom:1px solid var(--border);}
+.xi:last-child{border-bottom:none;}
+.xp{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);letter-spacing:.05em;line-height:1.65;padding-top:4px;}
+.xt{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:.2rem;}
+.xc{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:.8rem;letter-spacing:.04em;}
+.xbl{list-style:none;display:flex;flex-direction:column;gap:.45rem;}
+.xbl li{font-size:14.5px;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.72;}
+.xbl li::before{content:'→';position:absolute;left:0;color:var(--muted2);font-family:'DM Mono',monospace;font-size:11px;top:3px;}
+.xbl li strong{color:var(--text);font-weight:500;}
+
+/* CONTACT */
+#contact{min-height:48vh;display:flex;flex-direction:column;justify-content:center;}
+.ch{font-family:'DM Serif Display',serif;font-size:clamp(2.5rem,6vw,5rem);line-height:1;margin-bottom:2rem;}
+.ch em{font-style:italic;color:var(--accent);}
+.clinks{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2rem;}
+.cl{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.cl:hover{color:var(--accent);border-color:var(--accent);}
+.cn{font-family:'DM Mono',monospace;font-size:12px;color:var(--muted2);max-width:420px;line-height:1.75;}
+
+/* FOOTER */
+footer{
+  padding:1.8rem clamp(1.2rem,3.8vw,2.8rem);
+  border-top:1px solid var(--border);display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:1rem;
+  width:min(1120px,100%);margin:0 auto;
+}
+footer span{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);letter-spacing:.06em;}
+
+/* ZH FONT OVERRIDES */
+[data-lang="zh"] .hname,[data-lang="zh"] .ah,[data-lang="zh"] .ed,
+[data-lang="zh"] .ptitle,[data-lang="zh"] .xt,[data-lang="zh"] .ch{
+  font-family:'Noto Serif SC','DM Serif Display',serif;letter-spacing:.02em;
+}
+
+/* ANIMATIONS */
+@keyframes fu{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes sp{0%,100%{opacity:.3;}50%{opacity:1;}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:0 1rem;}
+  .nav-links{display:none;}
+  #hero,section,footer{padding-left:1rem;padding-right:1rem;width:100%;}
+  #hero{padding-bottom:4rem;}
+  .hscroll{display:none;}
+  .agrid,.pgrid{grid-template-columns:1fr;}
+  .ei,.xi{grid-template-columns:1fr;gap:.4rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="logo">JZ</a>
+  <ul class="nav-links">
+    <li><a href="#about"      data-en="About"      data-zh="关于">About</a></li>
+    <li><a href="#education"  data-en="Education"  data-zh="教育">Education</a></li>
+    <li><a href="#projects"   data-en="Projects"   data-zh="项目">Projects</a></li>
+    <li><a href="#experience" data-en="Experience" data-zh="经历">Experience</a></li>
+    <li><a href="#contact"    data-en="Contact"    data-zh="联系">Contact</a></li>
+  </ul>
+  <div class="nav-r">
+    <div class="pill">
+      <button class="tbtn on" id="ben" onclick="setLang('en')">EN</button>
+      <button class="tbtn"    id="bzh" onclick="setLang('zh')">中文</button>
+    </div>
+    <button class="ibtn" id="tibtn" onclick="toggleTheme()">☾</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hgrid"></div>
+  <p class="hlabel"
+     data-en="Financial Engineering · Quantitative Modeling · Machine Learning"
+     data-zh="金融工程 · 量化建模 · 机器学习">
+    Financial Engineering · Quantitative Modeling · Machine Learning
+  </p>
+  <h1 class="hname">Jiaqi<br><em>Zeng</em></h1>
+  <p class="hdesc"
+     data-en="M.S. Financial Engineering student at <strong>UIUC</strong>, building at the intersection of mathematics, machine learning, and financial markets. From derivatives pricing and structured credit to LLM-powered market intelligence — I work where the math meets the model."
+     data-zh="<strong>伊利诺伊大学香槟分校</strong>金融工程硕士在读，专注于数学、机器学习与金融市场的交叉领域。研究方向涵盖衍生品定价、结构化信贷建模到基于大语言模型的市场情报系统——在数学推导与模型落地之间寻找最优解。">
+    M.S. Financial Engineering student at <strong>UIUC</strong>, building at the intersection of mathematics, machine learning, and financial markets. From derivatives pricing and structured credit to LLM-powered market intelligence — I work where the math meets the model.
+  </p>
+  <div class="hcta">
+    <a href="#projects" class="bp" data-en="View projects" data-zh="查看项目">View projects</a>
+    <a href="mailto:jiaqi30@illinois.edu" class="bg" data-en="Get in touch" data-zh="联系我">Get in touch</a>
+  </div>
+  <div class="hscroll">
+    <div class="sline"></div>
+    <span data-en="scroll" data-zh="滚动">scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="slabel" data-en="About" data-zh="关于我">About</p>
+  <div class="agrid">
+    <div class="reveal">
+      <h2 class="ah"
+          data-en="Math-first.<br><em>Markets-focused.</em>"
+          data-zh="数学为本，<br><em>市场为向。</em>">
+        Math-first.<br><em>Markets-focused.</em>
+      </h2>
+      <p class="at"
+         data-en="I'm a financial engineering student with a background in pure mathematics — <strong>B.S. from UIUC</strong> and <strong>M.S. from Rutgers</strong> — currently in the <strong>MSFE program at UIUC</strong> (graduating Dec 2026)."
+         data-zh="金融工程在读学生，数学背景扎实——<strong>伊利诺伊大学香槟分校数学学士</strong>、<strong>罗格斯大学数学硕士</strong>，目前就读于<strong>UIUC金融工程硕士项目</strong>（预计2026年12月毕业）。">
+        I'm a financial engineering student with a background in pure mathematics — <strong>B.S. from UIUC</strong> and <strong>M.S. from Rutgers</strong> — currently in the <strong>MSFE program at UIUC</strong> (graduating Dec 2026).
+      </p>
+      <p class="at"
+         data-en="My work spans the full stack of quantitative finance: calibrating stochastic volatility models, engineering credit features on real banking data, building end-to-end ML pipelines, and deploying LLM systems for market signal extraction."
+         data-zh="研究方向覆盖量化金融全栈：随机波动率模型校准、真实银行数据的信用特征工程、端到端ML流水线构建，以及用于市场信号提取的大语言模型系统部署。">
+        My work spans the full stack of quantitative finance: calibrating stochastic volatility models, engineering credit features on real banking data, building end-to-end ML pipelines, and deploying LLM systems for market signal extraction.
+      </p>
+      <p class="at"
+         data-en="Actively seeking <strong>internship and full-time roles</strong> in quant research, financial data science, and structured finance modeling — US and China markets."
+         data-zh="正积极寻找量化研究、金融数据科学及结构化金融建模方向的<strong>实习或全职机会</strong>，中美两地均考虑。">
+        Actively seeking <strong>internship and full-time roles</strong> in quant research, financial data science, and structured finance modeling — US and China markets.
+      </p>
+    </div>
+    <div class="ar reveal">
+      <div class="ib">
+        <div class="il" data-en="Location" data-zh="所在地">Location</div>
+        <div class="iv" data-en="Champaign, IL — open to relocation" data-zh="伊利诺伊州香槟市，接受外地机会">Champaign, IL — open to relocation</div>
+      </div>
+      <div class="ib">
+        <div class="il" data-en="Target roles" data-zh="目标方向">Target roles</div>
+        <div class="iv" data-en="Quant Research · Financial Data Science · Structured Finance Modeling" data-zh="量化研究 · 金融数据科学 · 结构化金融建模">Quant Research · Financial Data Science · Structured Finance Modeling</div>
+      </div>
+      <div class="ib">
+        <div class="il" data-en="Languages" data-zh="语言能力">Languages</div>
+        <div class="iv" data-en="Chinese (native) · English (advanced) · Japanese (basic)" data-zh="中文（母语）· 英语（流利）· 日语（基础）">Chinese (native) · English (advanced) · Japanese (basic)</div>
+      </div>
+      <div class="ib">
+        <div class="il" data-en="Technical skills" data-zh="技术栈">Technical skills</div>
+        <div class="sw">
+          <span class="sk">Python</span><span class="sk">C++</span><span class="sk">R</span>
+          <span class="sk">SQL</span><span class="sk">Java</span><span class="sk">PyTorch</span>
+          <span class="sk">XGBoost</span><span class="sk">LangGraph</span>
+          <span class="sk">FastAPI</span><span class="sk">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="slabel" data-en="Education" data-zh="教育背景">Education</p>
+  <div class="ei reveal">
+    <div class="ey">2025 – 2026</div>
+    <div>
+      <div class="ed" data-en="M.S. Financial Engineering" data-zh="金融工程硕士">M.S. Financial Engineering</div>
+      <div class="es" data-en="University of Illinois Urbana-Champaign · Champaign, IL" data-zh="伊利诺伊大学香槟分校 · 伊利诺伊州香槟市">University of Illinois Urbana-Champaign · Champaign, IL</div>
+    </div>
+  </div>
+  <div class="ei reveal">
+    <div class="ey">2023 – 2025</div>
+    <div>
+      <div class="ed" data-en="B.S. Mathematics" data-zh="数学学士">B.S. Mathematics</div>
+      <div class="es" data-en="University of Illinois Urbana-Champaign · Champaign, IL" data-zh="伊利诺伊大学香槟分校 · 伊利诺伊州香槟市">University of Illinois Urbana-Champaign · Champaign, IL</div>
+      <div class="eh" data-en="Dean's List — Spring 2024" data-zh="院长奖学金名单 — 2024年春">Dean's List — Spring 2024</div>
+    </div>
+  </div>
+  <div class="ei reveal">
+    <div class="ey">2021 – 2023</div>
+    <div>
+      <div class="ed" data-en="M.S. Mathematics" data-zh="数学硕士">M.S. Mathematics</div>
+      <div class="es" data-en="Rutgers, The State University of New Jersey · New Brunswick, NJ" data-zh="罗格斯大学 · 新泽西州新不伦瑞克市">Rutgers, The State University of New Jersey · New Brunswick, NJ</div>
+      <div class="eh" data-en="Dean's List — Fall 2021" data-zh="院长奖学金名单 — 2021年秋">Dean's List — Fall 2021</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="slabel" data-en="Selected projects" data-zh="精选项目">Selected projects</p>
+  <div class="pgrid">
+
+    <div class="pc reveal">
+      <div class="ptags">
+        <span class="pt ptf" data-en="Structured Finance" data-zh="结构化金融">Structured Finance</span>
+        <span class="pt ptm">ML</span>
+      </div>
+      <div class="ptitle" data-en="CMBS Prepayment Modeling" data-zh="CMBS提前还款建模">CMBS Prepayment Modeling</div>
+      <div class="porg" data-en="Capital One · MSFE Practicum" data-zh="Capital One · MSFE实践项目">Capital One · MSFE Practicum</div>
+      <ul class="pbl">
+        <li data-en="Built dual-model framework — <strong>logistic regression</strong> + <strong>XGBoost</strong> — to forecast CMBS prepayment behavior" data-zh="构建双模型框架——<strong>逻辑回归</strong>基准 + <strong>XGBoost</strong>分类器，预测CMBS提前还款行为">Built dual-model framework — <strong>logistic regression</strong> + <strong>XGBoost</strong> — to forecast CMBS prepayment behavior</li>
+        <li data-en="Engineered loan-level &amp; macroeconomic features; achieved <strong>~80% out-of-sample accuracy</strong> via walk-forward validation" data-zh="工程化贷款层级及宏观经济特征；通过前推验证实现<strong>约80%样本外准确率</strong>">Engineered loan-level &amp; macroeconomic features; achieved <strong>~80% out-of-sample accuracy</strong> via walk-forward validation</li>
+        <li data-en="Benchmarked statistical vs. ML approaches on robustness and interpretability for real-world credit risk" data-zh="对比统计与ML方法在鲁棒性和可解释性方面的表现，服务实际信用风险管理">Benchmarked statistical vs. ML approaches on robustness and interpretability for real-world credit risk</li>
+      </ul>
+      <div class="pdate" data-en="Jan – May 2026" data-zh="2026年1月–5月">Jan – May 2026</div>
+    </div>
+
+    <div class="pc reveal">
+      <div class="ptags">
+        <span class="pt ptq" data-en="Derivatives" data-zh="衍生品">Derivatives</span>
+        <span class="pt ptm" data-en="Neural Networks" data-zh="神经网络">Neural Networks</span>
+      </div>
+      <div class="ptitle" data-en="Neural Network Option Pricing" data-zh="神经网络期权定价">Neural Network Option Pricing</div>
+      <div class="porg" data-en="ML in Finance Lab · MSFE Final Project" data-zh="金融机器学习课 · MSFE期末项目">ML in Finance Lab · MSFE Final Project</div>
+      <ul class="pbl">
+        <li data-en="Developed <strong>feedforward NN surrogates</strong> to price American puts under Black–Scholes and Heston stochastic volatility" data-zh="构建<strong>前馈神经网络代理模型</strong>，在Black–Scholes和Heston随机波动率下对美式看跌期权定价">Developed <strong>feedforward NN surrogates</strong> to price American puts under Black–Scholes and Heston stochastic volatility</li>
+        <li data-en="Calibrated Heston SV and SVI implied vol surfaces; derived local vol via the <strong>Dupire framework</strong>" data-zh="校准Heston随机波动率及SVI隐含波动率曲面；通过<strong>Dupire框架</strong>推导局部波动率">Calibrated Heston SV and SVI implied vol surfaces; derived local vol via the <strong>Dupire framework</strong></li>
+        <li data-en="Achieved pricing <strong>MAE 0.084</strong> (BS) and <strong>0.145</strong> (Heston) — fast inference replacing costly PDE solvers" data-zh="定价<strong>MAE 0.084</strong>（BS）和<strong>0.145</strong>（Heston）——高效推理替代计算密集型PDE求解器">Achieved pricing <strong>MAE 0.084</strong> (BS) and <strong>0.145</strong> (Heston) — fast inference replacing costly PDE solvers</li>
+      </ul>
+      <div class="pdate" data-en="Oct – Dec 2025" data-zh="2025年10月–12月">Oct – Dec 2025</div>
+    </div>
+
+    <div class="pc reveal">
+      <div class="ptags">
+        <span class="pt ptm">LLM</span>
+        <span class="pt ptf" data-en="Market Intelligence" data-zh="市场情报">Market Intelligence</span>
+      </div>
+      <div class="ptitle" data-en="LLM Financial News Pipeline" data-zh="大语言模型金融新闻系统">LLM Financial News Pipeline</div>
+      <div class="porg" data-en="Financial Engineering Club" data-zh="金融工程俱乐部">Financial Engineering Club</div>
+      <ul class="pbl">
+        <li data-en="Architected <strong>multi-agent pipeline</strong> with LangGraph + LLMs to surface actionable signals from real-time news" data-zh="基于LangGraph和大语言模型构建<strong>多智能体流水线</strong>，从实时新闻中提取可操作的市场信号">Architected <strong>multi-agent pipeline</strong> with LangGraph + LLMs to surface actionable signals from real-time news</li>
+        <li data-en="Integrated <strong>FinBERT pre-screening</strong> and semantic deduplication to filter noise and prioritize high-impact events" data-zh="集成<strong>FinBERT预筛选</strong>和语义去重，过滤噪音，优先推送高影响力事件">Integrated <strong>FinBERT pre-screening</strong> and semantic deduplication to filter noise and prioritize high-impact events</li>
+        <li data-en="Deployed full-stack system — <strong>FastAPI + Streamlit</strong> + multi-channel alerts — for 24/7 monitoring" data-zh="部署全栈系统——<strong>FastAPI + Streamlit</strong> + 多渠道告警，实现全天候市场监控">Deployed full-stack system — <strong>FastAPI + Streamlit</strong> + multi-channel alerts — for 24/7 monitoring</li>
+      </ul>
+      <div class="pdate" data-en="Jan – May 2026" data-zh="2026年1月–5月">Jan – May 2026</div>
+    </div>
+
+    <div class="pc reveal">
+      <div class="ptags">
+        <span class="pt ptq" data-en="Time Series" data-zh="时间序列">Time Series</span>
+        <span class="pt ptc" data-en="Competition" data-zh="竞赛">Competition</span>
+      </div>
+      <div class="ptitle" data-en="DRW Crypto Forecasting" data-zh="DRW加密货币预测竞赛">DRW Crypto Forecasting</div>
+      <div class="porg" data-en="DRW · Kaggle Competition" data-zh="DRW · Kaggle竞赛">DRW · Kaggle Competition</div>
+      <ul class="pbl">
+        <li data-en="Led 5-member team in <strong>DRW-hosted Kaggle competition</strong> on minute-level crypto price forecasting" data-zh="带领5人团队参加<strong>DRW主办Kaggle竞赛</strong>，进行分钟级加密货币价格预测">Led 5-member team in <strong>DRW-hosted Kaggle competition</strong> on minute-level crypto price forecasting</li>
+        <li data-en="Designed <strong>LSTM + XGBoost ensemble</strong> on 525K-row, 786-feature dataset across multiple assets" data-zh="在52.5万行、786特征的多资产数据集上设计<strong>LSTM + XGBoost集成模型</strong>">Designed <strong>LSTM + XGBoost ensemble</strong> on 525K-row, 786-feature dataset across multiple assets</li>
+        <li data-en="Built end-to-end pipeline: API ingestion → mutual information <strong>feature selection</strong> → model training" data-zh="构建端到端流水线：API数据采集 → 互信息<strong>特征筛选</strong> → 模型训练">Built end-to-end pipeline: API ingestion → mutual information <strong>feature selection</strong> → model training</li>
+      </ul>
+      <div class="pdate" data-en="Jun – Jul 2025" data-zh="2025年6月–7月">Jun – Jul 2025</div>
+    </div>
+
+    <div class="pc reveal">
+      <div class="ptags">
+        <span class="pt ptm" data-en="Autonomous AI" data-zh="自主AI">Autonomous AI</span>
+        <span class="pt ptq">HFT</span>
+      </div>
+      <div class="ptitle" data-en="Autonomous ML Research System" data-zh="自主ML研究优化系统">Autonomous ML Research System</div>
+      <div class="porg" data-en="High Frequency Trading Course · MSFE" data-zh="高频交易课程 · MSFE">High Frequency Trading Course · MSFE</div>
+      <ul class="pbl">
+        <li data-en="Built <strong>autonomous research loop</strong> using LLM-driven hypothesis generation to iteratively improve financial ML models" data-zh="构建<strong>自主研究循环</strong>，通过LLM驱动的假设生成迭代优化金融ML模型">Built <strong>autonomous research loop</strong> using LLM-driven hypothesis generation to iteratively improve financial ML models</li>
+        <li data-en="Implemented <strong>walk-forward validation</strong> + multi-agent judging for robust, consistent evaluation" data-zh="实现<strong>前推验证</strong> + 多智能体评判机制，确保模型评估的鲁棒性与一致性">Implemented <strong>walk-forward validation</strong> + multi-agent judging for robust, consistent evaluation</li>
+        <li data-en="Automated experiment tracking and model versioning via <strong>Git-based pipeline</strong> — 24/7 optimization" data-zh="通过<strong>Git流水线</strong>自动化实验追踪和模型版本控制——全天候无人干预优化">Automated experiment tracking and model versioning via <strong>Git-based pipeline</strong> — 24/7 optimization</li>
+      </ul>
+      <div class="pdate" data-en="Jan – May 2026" data-zh="2026年1月–5月">Jan – May 2026</div>
+    </div>
+
+    <div class="pc reveal">
+      <div class="ptags">
+        <span class="pt ptf" data-en="Credit Risk" data-zh="信用风险">Credit Risk</span>
+        <span class="pt ptc" data-en="Competition" data-zh="竞赛">Competition</span>
+      </div>
+      <div class="ptitle" data-en="Credit Risk &amp; Spending Forecasting" data-zh="信用风险与消费预测">Credit Risk &amp; Spending Forecasting</div>
+      <div class="porg" data-en="UIUC Datathon · Synchrony Financial" data-zh="UIUC数据马拉松 · Synchrony Financial">UIUC Datathon · Synchrony Financial</div>
+      <ul class="pbl">
+        <li data-en="Engineered credit features from account history, transactions, and fraud indicators on real <strong>Synchrony banking data</strong>" data-zh="基于真实<strong>Synchrony银行数据</strong>，从账户历史、交易记录和欺诈指标中工程化信用特征">Engineered credit features from account history, transactions, and fraud indicators on real <strong>Synchrony banking data</strong></li>
+        <li data-en="Built dual-model framework — <strong>XGBoost</strong> for credit line classification + <strong>SARIMA</strong> for spending projections" data-zh="构建双模型框架——<strong>XGBoost</strong>信用额度分类 + <strong>SARIMA</strong>消费额预测">Built dual-model framework — <strong>XGBoost</strong> for credit line classification + <strong>SARIMA</strong> for spending projections</li>
+        <li data-en="Led team coordination and final integration of models into a coherent deliverable" data-zh="负责团队协调，整合各模型输出形成完整交付成果">Led team coordination and final integration of models into a coherent deliverable</li>
+      </ul>
+      <div class="pdate" data-en="Mar 2025" data-zh="2025年3月">Mar 2025</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="slabel" data-en="Experience" data-zh="工作经历">Experience</p>
+
+  <div class="xi reveal">
+    <div class="xp" data-en="Jan – May 2026&#10;Champaign, IL" data-zh="2026年1月–5月&#10;伊利诺伊州香槟市">Jan – May 2026<br>Champaign, IL</div>
+    <div>
+      <div class="xt" data-en="Practicum Researcher" data-zh="实践项目研究员">Practicum Researcher</div>
+      <div class="xc" data-en="MSFE Program · Capital One sponsored" data-zh="MSFE项目 · Capital One赞助">MSFE Program · Capital One sponsored</div>
+      <ul class="xbl">
+        <li data-en="Built and compared statistical and ML models to forecast CMBS prepayment risk for a <strong>real-world structured finance problem</strong>" data-zh="构建并对比统计与ML模型，针对<strong>真实结构化金融问题</strong>预测CMBS提前还款风险">Built and compared statistical and ML models to forecast CMBS prepayment risk for a <strong>real-world structured finance problem</strong></li>
+        <li data-en="Delivered model selection guidance with practical applicability for credit risk management teams" data-zh="输出具有实际应用价值的模型选择建议，服务于信用风险管理团队">Delivered model selection guidance with practical applicability for credit risk management teams</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="xi reveal">
+    <div class="xp" data-en="May – Aug 2025&#10;Champaign, IL" data-zh="2025年5月–8月&#10;伊利诺伊州香槟市">May – Aug 2025<br>Champaign, IL</div>
+    <div>
+      <div class="xt" data-en="AI Research Intern → Reviewer" data-zh="AI研究实习生 → 审核员">AI Research Intern → Reviewer</div>
+      <div class="xc" data-en="Handshake MOVE Project" data-zh="Handshake MOVE项目">Handshake MOVE Project</div>
+      <ul class="xbl">
+        <li data-en="Selected as Fellow; <strong>promoted to Reviewer</strong> for validating AI-generated math datasets for LLM fine-tuning" data-zh="入选Fellow；因在验证LLM微调用AI生成数学数据集方面表现突出<strong>晋升为Reviewer</strong>">Selected as Fellow; <strong>promoted to Reviewer</strong> for validating AI-generated math datasets for LLM fine-tuning</li>
+        <li data-en="Ensured accuracy against official sources; oversaw peers' validation quality across the dataset pipeline" data-zh="确保内容与权威来源一致；监督同伴验证质量，覆盖整个数据集流水线">Ensured accuracy against official sources; oversaw peers' validation quality across the dataset pipeline</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="xi reveal">
+    <div class="xp" data-en="Jun – Jul 2023&#10;Zhuhai, China" data-zh="2023年6月–7月&#10;中国珠海">Jun – Jul 2023<br>Zhuhai, China</div>
+    <div>
+      <div class="xt" data-en="Wealth Management Intern" data-zh="财富管理实习生">Wealth Management Intern</div>
+      <div class="xc" data-en="CITIC Securities · Top-5 Chinese securities firm" data-zh="中信证券 · 国内头部证券公司">CITIC Securities · Top-5 Chinese securities firm</div>
+      <ul class="xbl">
+        <li data-en="Onboarded <strong>3 new HNW clients</strong>, conducting risk-tolerance assessments and aligning portfolios to investment objectives" data-zh="开发<strong>3位高净值新客户</strong>，完成风险承受能力评估并将投资组合与客户目标对齐">Onboarded <strong>3 new HNW clients</strong>, conducting risk-tolerance assessments and aligning portfolios to investment objectives</li>
+        <li data-en="Pitched and closed a <strong>RMB 500,000 (≈ USD 70K)</strong> securities portfolio product tailored to client risk profile" data-zh="成功销售<strong>50万元人民币（约7万美元）</strong>证券组合产品，方案针对客户风险偏好量身定制">Pitched and closed a <strong>RMB 500,000 (≈ USD 70K)</strong> securities portfolio product tailored to client risk profile</li>
+        <li data-en="Monitored client NAVs daily; flagged deviations to senior advisors to support timely rebalancing decisions" data-zh="每日监控客户净值，向高级顾问上报偏差，支持及时再平衡决策">Monitored client NAVs daily; flagged deviations to senior advisors to support timely rebalancing decisions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="slabel" data-en="Contact" data-zh="联系我">Contact</p>
+  <h2 class="ch reveal"
+      data-en="Let's<br><em>connect.</em>"
+      data-zh="期待<br><em>交流。</em>">
+    Let's<br><em>connect.</em>
+  </h2>
+  <div class="clinks reveal">
+    <a href="mailto:jiaqi30@illinois.edu" class="cl">jiaqi30@illinois.edu</a>
+    <a href="http://www.linkedin.com/in/jiaqi-zeng-a7482432b" target="_blank" class="cl">LinkedIn</a>
+    <a href="https://github.com/Jekieee" target="_blank" class="cl">GitHub</a>
+  </div>
+  <p class="cn reveal"
+     data-en="Open to quant research, financial data science, and structured finance roles — internship or full-time, US or China markets."
+     data-zh="欢迎量化研究、金融数据科学及结构化金融建模方向的机会——实习或全职，中美两地均可。">
+    Open to quant research, financial data science, and structured finance roles — internship or full-time, US or China markets.
+  </p>
+</section>
+
+<footer>
+  <span>Jiaqi Zeng · MSFE, UIUC · 2026</span>
+  <span>Champaign, IL</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.getElementById('ben').classList.toggle('on', lang==='en');
+  document.getElementById('bzh').classList.toggle('on', lang==='zh');
+  const key = 'data-' + lang;
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const v = el.getAttribute(key);
+    if (!v) return;
+    const tag = el.tagName;
+    const cls = el.classList;
+    if (tag==='H1'||tag==='H2'||cls.contains('hdesc')||cls.contains('at')||tag==='LI') {
+      el.innerHTML = v;
+    } else {
+      el.textContent = v;
+    }
+  });
+  // fix period line breaks stored as \n
+  document.querySelectorAll('.xp[data-' + lang + ']').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang).replace(/\n/g, '<br>');
+  });
+}
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const dark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', dark ? 'light' : 'dark');
+  document.getElementById('tibtn').textContent = dark ? '☾' : '☀';
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

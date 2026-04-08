@@ -1,0 +1,111 @@
+{
+  "display_name": "Jiaqi (Tina) Zeng",
+  "display_name_zh": "曾嘉琪（Tina）",
+  "headline": "",
+  "summary": "M.S. Financial Engineering student at UIUC (Aug 2025 – Dec 2026) building on a B.S. in Mathematics (UIUC) and an M.S. in Mathematics (Rutgers). Experience spans wealth-management internship work, AI dataset validation for LLM training, and datathons and modeling work in credit risk, crypto forecasting, and options/ML coursework. Comfortable shipping pipelines with classical ML, time series, and LLM tooling.",
+  "summary_zh": "伊利诺伊大学香槟分校金融工程硕士在读（2025年8月—2026年12月）。本科为 UIUC 数学学士，曾在罗格斯大学取得数学硕士学位。经历涵盖证券公司财富管理部门实习、面向大语言模型训练的数学数据集校验，以及信用风险、加密市场、期权定价与机器学习等方向的建模与竞赛实践；能够落地经典机器学习、时间序列与大语言模型相关工具链。",
+  "skills": [
+    "Python",
+    "C++",
+    "R",
+    "Java",
+    "Canva",
+    "Microsoft Office Suite",
+    "SQL",
+    "HTML"
+  ],
+  "related_coursework": "Machine Learning in Fin Lab, Statistical Methods in Finance, Abstract Linear Algebra, Linear Algebra with Computational Applications, Methods of Applied Statistics, Systems Programming, Linear Optimization",
+  "related_coursework_zh": "金融机器学习实验课、金融统计方法、抽象线性代数、计算与应用线性代数、应用统计方法、系统编程、线性优化等",
+  "target_role_cards": [
+    {
+      "title": "Quant Research Analyst",
+      "subtitle": "Hedge fund / bank"
+    },
+    {
+      "title": "Data Science (Finance)",
+      "subtitle": "Asset mgmt / fintech"
+    },
+    {
+      "title": "Structured Finance",
+      "subtitle": "CMBS / credit modeling"
+    },
+    {
+      "title": "ML Engineer (Finance)",
+      "subtitle": "Algo trading / risk systems"
+    }
+  ],
+  "target_role_cards_zh": [
+    {
+      "title": "量化研究分析师",
+      "subtitle": "对冲基金 / 银行"
+    },
+    {
+      "title": "数据科学（金融）",
+      "subtitle": "资产管理 / 金融科技"
+    },
+    {
+      "title": "结构化融资",
+      "subtitle": "CMBS / 信用建模"
+    },
+    {
+      "title": "机器学习工程师（金融）",
+      "subtitle": "算法交易 / 风控系统"
+    }
+  ],
+  "target_roles": [],
+  "target_roles_zh": [],
+  "education": [
+    {
+      "school": "University of Illinois Urbana-Champaign",
+      "degree": "Master",
+      "field": "Financial Engineering",
+      "location": "Champaign, IL",
+      "start": "2025-08",
+      "end": "2026-12",
+      "honors": ""
+    },
+    {
+      "school": "University of Illinois Urbana-Champaign",
+      "degree": "Bachelor",
+      "field": "Mathematics",
+      "location": "Champaign, IL",
+      "start": "2023-08",
+      "end": "2025-05",
+      "honors": "Dean's List (2024 Spring)"
+    },
+    {
+      "school": "Rutgers, The State University of New Jersey",
+      "degree": "Master",
+      "field": "Mathematics",
+      "location": "New Brunswick, NJ",
+      "start": "2021-09",
+      "end": "2023-05",
+      "honors": "Dean's List (2021 Fall)"
+    }
+  ],
+  "languages": [
+    {
+      "name": "Chinese",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "Advanced"
+    },
+    {
+      "name": "Japanese",
+      "level": "Basic"
+    }
+  ],
+  "contact": {
+    "email": "jiaqi30@illinois.edu",
+    "phone": "8484371758"
+  },
+  "address": "Champaign, IL",
+  "address_zh": "美国伊利诺伊州厄巴纳-香槟市",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/jiaqi-zeng-a7482432b",
+    "portfolio": "",
+    "github": "https://github.com/Jekieee"
+  }
+}
